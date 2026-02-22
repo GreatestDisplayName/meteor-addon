@@ -1,24 +1,24 @@
 {
   "schemaVersion": 1,
-  "id": "addon-template",
+  "id": "meteor-addon",
   "version": "${version}",
-  "name": "Addon Template",
-  "description": "An addon template for Meteor Client addons.",
+  "name": "Meteor Addon",
+  "description": "A comprehensive addon for Meteor Client with custom modules and utilities.",
   "authors": [
-    "LavacastGuy"
+    "GreatestDisplayName"
   ],
   "contact": {
-    "sources": "https://github.com/MeteorDevelopment/meteor-addon-template"
+    "sources": "https://github.com/GreatestDisplayName/meteor-addon"
   },
   "icon": "assets/template/icon.png",
   "environment": "client",
   "entrypoints": {
     "meteor": [
-      "com.example.addon.AddonTemplate"
+      "com.meteoraddon.addon.AddonTemplate"
     ]
   },
   "mixins": [
-    "addon-template.mixins.json"
+    "meteor-addon.mixins.json"
   ],
   "custom": {
     "meteor-client:color": "225,25,25",
