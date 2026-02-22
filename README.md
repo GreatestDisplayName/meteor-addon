@@ -1,25 +1,11 @@
-# Meteor Addon Template
+# Meteor Addon
 
-A template to allow easy usage of the Meteor Addon API.
+A comprehensive addon for Meteor Client with custom modules and utilities.
 
-### How to use
+### Repository
 
-#### Use GitHub Template (Recommended)
-
-- Click the green `Use this template` button in the top right corner of this page.  
-  This will create a new repository with this template and a clean history.
-
-#### Clone Manually
-
-- Alternatively, clone this repository using these commands for a clean history:
-  ```bash
-  git clone --depth 1 https://github.com/MeteorDevelopment/meteor-addon-template your-addon-name
-  cd your-addon-name
-  rm -rf .git
-  git init
-  git add .
-  git commit -m "Initial commit from template"
-  ```
+- Repository: https://github.com/GreatestDisplayName/meteor-addon
+- Author: GreatestDisplayName
 
 #### Development
 
@@ -77,20 +63,72 @@ To update this template to a newer Minecraft version, follow these steps:
 │   ╰── main
 │       │── java
 │       │   ╰── com
-│       │       ╰── example
-│       │           ╰── addon
-│       │               │── commands
-│       │               │   ╰── CommandExample
-│       │               │── hud
-│       │               │   ╰── HudExample
-│       │               │── modules
-│       │               │   ╰── ModuleExample
-│       │               ╰── AddonTemplate
+│       │       ├── meteoraddon
+│       │       │   ╰── addon
+│       │       │       │── commands
+│       │       │       │   ├── AddonCommands
+│       │       │       │   ├── AutoStaircaseCommand
+│       │       │       │   ├── ChatCommands
+│       │       │       │   ├── ChatCopyCommand
+│       │       │       │   ├── ChatListCommand
+│       │       │       │   ├── ChatSpamCommand
+│       │       │       │   ├── DebugCommand
+│       │       │       │   ╰── WitherCommand
+│       │       │       │── hud
+│       │       │       │   ├── ChatTextHud
+│       │       │       │   ├── LavaCastHud
+│       │       │       │   ├── LavaHud
+│       │       │       │   ╰── ModuleStatusHud
+│       │       │       │── interfaces
+│       │       │       │   ╰── MapPrinter
+│       │       │       │── mixin
+│       │       │       │   ╰── StartupMixin
+│       │       │       │── modules
+│       │       │       │   ├── AntiBookBan
+│       │       │       │   ├── AutoPyramid
+│       │       │       │   ├── AutoReply
+│       │       │       │   ├── AutoStaircase
+│       │       │       │   ├── AutoWitherBuilder
+│       │       │       │   ├── ChatLogger
+│       │       │       │   ├── ChatMacro
+│       │       │       │   ├── ChatTextSelector
+│       │       │       │   ├── FluidPlacer
+│       │       │       │   ├── Insulit
+│       │       │       │   ├── IronGolemBuilder
+│       │       │       │   ├── LavaBucketPvP
+│       │       │       │   ├── LavaCast
+│       │       │       │   ├── LeetSpeak
+│       │       │       │   ├── MessageHighlighter
+│       │       │       │   ├── ModuleDisabler
+│       │       │       │   ├── Ragebait
+│       │       │       │   ├── SnowGolemBuilder
+│       │       │       │   ├── SpamPlus
+│       │       │       │   ├── TNTPvP
+│       │       │       │   ╰── WorldOriginMarker
+│       │       │       ├── utils
+│       │       │       │   ├── BlockUtils
+│       │       │       │   ├── ConfigDeserializer
+│       │       │       │   ├── ConfigSerializer
+│       │       │       │   ├── MapAreaCache
+│       │       │       │   ├── MathUtils
+│       │       │       │   ├── SlaveSystem
+│       │       │       │   ├── SlaveTableController
+│       │       │       │   ├── TextDebug
+│       │       │       │   ├── ToolUtils
+│       │       │       │   ├── Utils
+│       │       │       │   ╰── WorldUtils
+│       │       │       ╰── AddonTemplate
+│       │       ╰── kaboomfilter
+│       │           ├── commands
+│       │           │   ╰── KaboomCommands
+│       │           ╰── modules
+│       │               ├── ChatSpamFilter
+│       │               ╰── KaboomChatFiller
 │       ╰── resources
 │           │── assets
 │           │   ╰── template
 │           │       ╰── icon.png
-│           │── addon-template.mixins.json
+│           │── meteor-addon.mixins.json
 │           ╰── fabric.mod.json
 │── .editorconfig
 │── .gitignore
@@ -111,19 +149,24 @@ Here is a brief explanation of the ones you might need to modify:
   - `libs.versions.toml`: Defines version numbers for Minecraft, Loom, Meteor, and other dependencies.
   - `wrapper`: Contains the Gradle wrapper executable files.  
     To update the Gradle wrapper executable itself, run the wrapper update command (examples are shown above).
-- `src/main/java/com/example/addon`: Contains the main class of the addon.  
-  Here you can register your custom commands, modules, and HUDs.  
-  Edit the `getPackage` method to reflect the package of your addon.
+- `src/main/java/com/meteoraddon/addon`: Contains the main addon implementation.  
+  Here you can find all custom commands, modules, and HUDs.  
+  - `AddonTemplate`: Main addon entry point
+  - `commands`: Command implementations
+  - `modules`: Feature modules
+  - `hud`: Heads-up display implementations
+  - `utils`: Utility classes
+  - `mixin`: Minecraft mixin modifications
+- `src/main/java/com/kaboomfilter`: Separate module for Kaboom-specific features.
 - `src/main/resources`: Contains the resources of the addon.
     - `assets`: Contains the assets of the addon.  
       You can add your own assets here, separated in subfolders.
         - `template`: Contains the assets of the template.  
-          You can replace the `icon.png` file with your own addon icon.  
-          Also, rename this folder to reflect the name of your addon.
-    - `addon-template.mixins.json`: Contains the Mixin configuration for the addon.  
+          You can replace the `icon.png` file with your own addon icon.
+    - `meteor-addon.mixins.json`: Contains the Mixin configuration for the addon.  
       You can add your own mixins in the `client` array.
     - `fabric.mod.json`: Contains the metadata of the addon.  
-      Edit the various fields to reflect the metadata of your addon.
+      Configured for meteor-addon module with proper entry points.
 - `build.gradle.kts`: Contains the Gradle build script.  
   You can manage the dependencies of the addon here.  
   Remember to keep the `fabric-loom` version up-to-date.
