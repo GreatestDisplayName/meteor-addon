@@ -4,7 +4,7 @@ plugins {
 
 base {
     archivesName = properties["archives_base_name"] as String
-    version = libs.versions.mod.version.get()
+    version = "${libs.versions.mod.version.get()}-${libs.versions.minecraft.get()}"
     group = properties["maven_group"] as String
 }
 
@@ -27,6 +27,10 @@ dependencies {
 
     // Meteor
     modImplementation(libs.meteor.client)
+
+    // Addons addon dependencies
+    modImplementation("com.google.code.gson:gson:2.10.1")
+    modImplementation("com.squareup.okhttp3:okhttp:4.12.0")
 }
 
 tasks {
