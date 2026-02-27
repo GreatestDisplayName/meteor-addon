@@ -1,6 +1,5 @@
 package com.meteoraddon.addon.commands;
 
-import com.meteoraddon.addon.modules.Insulit;
 import com.meteoraddon.addon.modules.Ragebait;
 import com.meteoraddon.addon.modules.Ragebait.ToxicityLevel;
 import com.mojang.brigadier.arguments.BoolArgumentType;
@@ -23,7 +22,7 @@ import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
 
 public class ChatCommands extends Command {
     public ChatCommands() {
-        super("chat", "Manage various chat-related modules (Insulit, Ragebait). Use .chat insulit or .chat ragebait");
+        super("chat", "Manage Ragebait module. Use .chat ragebait");
     }
 
     @SuppressWarnings("unchecked")
@@ -64,93 +63,6 @@ public class ChatCommands extends Command {
 
     @Override
     public void build(LiteralArgumentBuilder<CommandSource> builder) {
-        // --- Insulit Subcommands ---
-        builder.then(literal("insulit")
-            .then(literal("info").executes(context -> {
-                var module = Modules.get().get(Insulit.class);
-                if (module == null) {
-                    ChatUtils.sendMsg(Text.literal("Insulit module not found!"));
-                    return SINGLE_SUCCESS;
-                }
-
-                StringBuilder status = new StringBuilder();
-                status.append("§6Insulit Status:\n");
-                status.append("§fEnabled: §a").append(module.isActive() ? "Yes" : "No").append("\n");
-                status.append("§fIncoming Filter: §a").append(getField(module, "filterIncoming") != null ? ((Object) getField(module, "filterIncoming")).toString().contains("true") ? "On" : "Off" : "Unknown").append("\n");
-                status.append("§fOutgoing Filter: §a").append(getField(module, "filterOutgoing") != null ? ((Object) getField(module, "filterOutgoing")).toString().contains("true") ? "On" : "Off" : "Unknown").append("\n");
-                status.append("§fReplace with Stars: §a").append(getField(module, "replaceWithStars") != null ? ((Object) getField(module, "replaceWithStars")).toString().contains("true") ? "Yes" : "No" : "Unknown").append("\n");
-                status.append("§fReplace with API: §a").append(getField(module, "replaceWithApiInsult") != null ? ((Object) getField(module, "replaceWithApiInsult")).toString().contains("true") ? "Yes" : "No" : "Unknown").append("\n");
-                status.append("§fRate Limiting: §a").append(getField(module, "enableRateLimit") != null ? ((Object) getField(module, "enableRateLimit")).toString().contains("true") ? "Yes" : "No" : "Unknown").append("\n");
-                status.append("§fAPI Cooldown: §f").append(getField(module, "apiCooldownSeconds") != null ? ((Object) getField(module, "apiCooldownSeconds")).toString() : "?").append("s\n");
-                status.append("§fCaching: §a").append(getField(module, "enableCache") != null ? ((Object) getField(module, "enableCache")).toString().contains("true") ? "Yes" : "No" : "Unknown").append("\n");
-                status.append("§fCache Size: §f").append(getField(module, "cacheSize") != null ? ((Object) getField(module, "cacheSize")).toString() : "?").append("\n");
-                status.append("§fCache Expires: §f").append(getField(module, "cacheExpireMinutes") != null ? ((Object) getField(module, "cacheExpireMinutes")).toString() : "?").append(" min\n");
-                status.append("§fAsync API: §a").append(getField(module, "enableAsyncApi") != null ? ((Object) getField(module, "enableAsyncApi")).toString().contains("true") ? "Yes" : "No" : "Unknown").append("\n");
-                status.append("§fAPI Disabled: §a").append(getField(module, "apiDisabled") != null ? ((Object) getField(module, "apiDisabled")).toString().contains("true") ? "Yes" : "No" : "Unknown").append("\n");
-                
-                ChatUtils.sendMsg(Text.literal(status.toString()));
-                return SINGLE_SUCCESS;
-            }))
-            .then(literal("toggle").executes(context -> {
-                var module = Modules.get().get(Insulit.class);
-                if (module == null) {
-                    ChatUtils.sendMsg(Text.literal("Insulit module not found!"));
-                    return SINGLE_SUCCESS;
-                }
-
-                module.toggle();
-                String state = module.isActive() ? "§aenabled" : "§cdisabled";
-                ChatUtils.sendMsg(Text.literal("Insulit " + state));
-                return SINGLE_SUCCESS;
-            }))
-            .then(literal("reset-api").executes(context -> {
-                var module = Modules.get().get(Insulit.class);
-                if (module == null) {
-                    ChatUtils.sendMsg(Text.literal("Insulit module not found!"));
-                    return SINGLE_SUCCESS;
-                }
-
-                // Reset API failure state
-                try {
-                    var field = module.getClass().getDeclaredField("consecutiveFailures");
-                    if (field != null) {
-                        field.setAccessible(true);
-                        field.set(module, 0);
-                        setField(module, "apiDisabled", false); // Use helper method
-                    }
-                } catch (Exception e) {
-                    ChatUtils.sendMsg(Text.literal("Failed to reset API state: " + e.getMessage()));
-                }
-                
-                ChatUtils.sendMsg(Text.literal("§aInsulit API failure count reset. API re-enabled."));
-                return SINGLE_SUCCESS;
-            }))
-            .then(literal("clear-cache").executes(context -> {
-                var module = Modules.get().get(Insulit.class);
-                if (module == null) {
-                    ChatUtils.sendMsg(Text.literal("Insulit module not found!"));
-                    return SINGLE_SUCCESS;
-                }
-
-                // Clear cache using reflection
-                try {
-                    var cacheField = module.getClass().getDeclaredField("insultCache");
-                    if (cacheField != null) {
-                        cacheField.setAccessible(true);
-                        var cache = cacheField.get(module);
-                        if (cache instanceof java.util.Map) {
-                            ((java.util.Map<?, ?>) cache).clear();
-                        }
-                    }
-                } catch (Exception e) {
-                    ChatUtils.sendMsg(Text.literal("Failed to clear cache: " + e.getMessage()));
-                }
-                
-                ChatUtils.sendMsg(Text.literal("§aInsulit cache cleared."));
-                return SINGLE_SUCCESS;
-            }))
-        );
-
         // --- Ragebait Subcommands ---
         builder.then(literal("ragebait")
             .then(literal("info").executes(context -> {
