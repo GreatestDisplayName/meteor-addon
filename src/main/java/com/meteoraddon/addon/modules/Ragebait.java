@@ -78,18 +78,29 @@ public class Ragebait extends Module {
         .build()
     );
 
+    private final Setting<Boolean> useApiInsults = sgGeneral.add(new BoolSetting.Builder()
+        .name("use-api-insults")
+        .description("Use insults from evilinsult.com API instead of hardcoded ones.")
+        .defaultValue(false)
+        .build()
+    );
+
     private final Random random = new Random();
 
     private final List<String> mildInsults = Arrays.asList(
         "lol you're bad", "get good scrub", "ez game", "try harder", "lame",
-        "noob move", "that was sad", "you suck", "git gud", "play better"
+        "noob move", "that was sad", "you suck", "git gud", "play better",
+        "skill issue", "trash player", "you're awful", "step up", "pathetic",
+        "weak", "loser", "terrible", "horrible", "bad at this"
     );
 
     private final List<String> moderateInsults = Arrays.asList(
         "you're actually trash", "uninstall the game", "how are you this bad",
         "worst player ever", "go back to tutorial", "you're a disgrace",
         "my grandma plays better", "delete your account", "you're useless",
-        "just quit already"
+        "just quit already", "you're a walking disappointment", "skill zero",
+        "absolute garbage", "go touch grass", "you're unplayable", "embarrassing",
+        "failure", "waste of time", "not worth it", "sad existence"
     );
 
     private final List<String> extremeInsults = Arrays.asList(
@@ -97,15 +108,21 @@ public class Ragebait extends Module {
         "I hope you never play this game again", "you're a waste of oxygen",
         "your parents are disappointed", "you should be banned for being this bad",
         "you're everything wrong with gaming", "kill your internet connection",
-        "you're a stain on the community", "do everyone a favor and quit forever"
+        "you're a stain on the community", "do everyone a favor and quit forever",
+        "your birth was a tragedy", "you're a cancer to society", "die in a fire",
+        "you're subhuman", "unworthy of life", "pure evil", "soul crushing loser",
+        "end yourself", "you're a mistake", "obliterate your existence"
     );
 
     private final List<String> prefixes = Arrays.asList(
-        "LMAO", "ROFL", "OMG", "BRUH", "DUDE", "YIKES", "CRINGE", "PATHETIC"
+        "LMAO", "ROFL", "OMG", "BRUH", "DUDE", "YIKES", "CRINGE", "PATHETIC",
+        "LOL", "HAHA", "KEKW", "WTF", "SMH", "FFS", "IDK", "TBH"
     );
 
     private final List<String> suffixes = Arrays.asList(
-        "get rekt", "ez", "gg ez", "stay mad", "cry more", "seething", "triggered"
+        "get rekt", "ez", "gg ez", "stay mad", "cry more", "seething", "triggered",
+        "owned", "pwned", "ratio", "L", "skill diff", "cope harder", "malder",
+        "take L", "betrayed", "exposed", "wrecked", "destroyed"
     );
 
     public Ragebait() {
@@ -127,8 +144,13 @@ public class Ragebait extends Module {
             ToxicityLevel.values()[random.nextInt(ToxicityLevel.values().length)] : 
             toxicityLevel.get();
 
-        List<String> insults = getInsultsForLevel(level);
-        String insult = insults.get(random.nextInt(insults.size()));
+        String insult;
+        if (useApiInsults.get()) {
+            insult = fetchInsultFromApi();
+        } else {
+            List<String> insults = getInsultsForLevel(level);
+            insult = insults.get(random.nextInt(insults.size()));
+        }
         
         StringBuilder result = new StringBuilder();
 

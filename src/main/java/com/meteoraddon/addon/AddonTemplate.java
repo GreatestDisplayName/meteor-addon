@@ -30,17 +30,16 @@ import com.meteoraddon.addon.modules.ModuleDisabler;
 import com.meteoraddon.addon.modules.Ragebait;
 import com.meteoraddon.addon.modules.SpamPlus;
 import com.meteoraddon.addon.modules.WorldOriginMarker;
-import com.meteoraddon.addon.modules.KaboomChatFiller;
-import com.meteoraddon.addon.modules.SnowGolemBuilder;
-import com.meteoraddon.addon.modules.LavaBucketPvP;
-import com.meteoraddon.addon.modules.TNTPvP;
-import com.meteoraddon.addon.modules.LavaCast;
-import com.meteoraddon.addon.modules.LeetSpeak;
-import com.meteoraddon.addon.modules.MessageHighlighter;
-import com.meteoraddon.addon.modules.ModuleDisabler;
+import com.meteoraddon.addon.modules.SignPlus;
+import com.meteoraddon.addon.modules.SpeedHaxPlus;
+import com.meteoraddon.addon.modules.MineNotStone;
+import com.meteoraddon.addon.modules.BucketSequence;
 import com.meteoraddon.addon.modules.Ragebait;
+import com.meteoraddon.addon.modules.ModuleDisabler;
 import com.meteoraddon.addon.modules.SpamPlus;
 import com.meteoraddon.addon.modules.WorldOriginMarker;
+import com.meteoraddon.addon.modules.SgaTranslator;
+import com.meteoraddon.addon.modules.TpSpammer;
 import com.meteoraddon.addon.hud.ChatTextHud;
 import com.meteoraddon.addon.hud.LavaHud;
 import com.meteoraddon.addon.hud.ModuleStatusHud;
@@ -87,6 +86,12 @@ public class AddonTemplate extends MeteorAddon {
         Modules.get().add(new IronGolemBuilder());
         Modules.get().add(new ChatSpamFilter());
         Modules.get().add(new KaboomChatFiller());
+        Modules.get().add(new SpeedHaxPlus());
+        Modules.get().add(new MineNotStone());
+        Modules.get().add(new SignPlus());
+        Modules.get().add(new BucketSequence());
+        Modules.get().add(new SgaTranslator());
+        Modules.get().add(new TpSpammer());
 
         // Commands
         Commands.add(new ChatCommands());
