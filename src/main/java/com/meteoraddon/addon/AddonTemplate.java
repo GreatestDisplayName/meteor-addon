@@ -40,6 +40,11 @@ import com.meteoraddon.addon.modules.SpamPlus;
 import com.meteoraddon.addon.modules.WorldOriginMarker;
 import com.meteoraddon.addon.modules.SgaTranslator;
 import com.meteoraddon.addon.modules.TpSpammer;
+import com.meteoraddon.addon.modules.ProxyScraper;
+import com.meteoraddon.addon.modules.ProxyManager;
+import com.meteoraddon.addon.modules.TpKillAura;
+import com.meteoraddon.addon.modules.RanbooEndermanLang;
+import com.meteoraddon.addon.modules.EncryptMessage;
 import com.meteoraddon.addon.hud.ChatTextHud;
 import com.meteoraddon.addon.hud.LavaHud;
 import com.meteoraddon.addon.hud.ModuleStatusHud;
@@ -51,6 +56,7 @@ import meteordevelopment.meteorclient.systems.modules.Category;
 import meteordevelopment.meteorclient.systems.modules.Modules;
 import meteordevelopment.meteorclient.utils.player.ChatUtils;
 import meteordevelopment.meteorclient.addons.GithubRepo;
+import java.net.Proxy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -59,6 +65,7 @@ public class AddonTemplate extends MeteorAddon {
     public static final Logger LOG = LoggerFactory.getLogger("MeteorAddon");
     public static final Category CATEGORY = new Category("Example");
     public static final HudGroup HUD_GROUP = new HudGroup("Example");
+    public static Proxy currentProxy = null;
 
     @Override
     public void onInitialize() {
@@ -92,6 +99,11 @@ public class AddonTemplate extends MeteorAddon {
         Modules.get().add(new BucketSequence());
         Modules.get().add(new SgaTranslator());
         Modules.get().add(new TpSpammer());
+        Modules.get().add(new ProxyScraper());
+        Modules.get().add(new ProxyManager());
+        Modules.get().add(new TpKillAura());
+        Modules.get().add(new RanbooEndermanLang());
+        Modules.get().add(new EncryptMessage());
 
         // Commands
         Commands.add(new ChatCommands());
