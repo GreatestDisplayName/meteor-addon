@@ -15,7 +15,8 @@ public class SgaTranslator extends Module {
     public SgaTranslator() {
         super(AddonTemplate.CATEGORY, "sga-translator", "Translates English messages to Standard Galactic Alphabet.");
 
-        // Initialize SGA mapping
+        // EXACT Minecraft Standard Galactic Alphabet Unicode mappings
+        // Source: Official Minecraft Wiki and dCode.fr
         sgaMap.put('A', "ᔑ");
         sgaMap.put('B', "ʖ");
         sgaMap.put('C', "ᓵ");
@@ -25,23 +26,23 @@ public class SgaTranslator extends Module {
         sgaMap.put('G', "⊣");
         sgaMap.put('H', "⍑");
         sgaMap.put('I', "╎");
-        sgaMap.put('J', "リ");
+        sgaMap.put('J', "⋮");
         sgaMap.put('K', "ꖌ");
         sgaMap.put('L', "ꖎ");
         sgaMap.put('M', "ᒲ");
         sgaMap.put('N', "リ");
         sgaMap.put('O', "𝙹");
-        sgaMap.put('P', "¡¡");
-        sgaMap.put('Q', "↗");
-        sgaMap.put('R', "ᓭ");
-        sgaMap.put('S', "ᓖ");
-        sgaMap.put('T', "ᓴ");
+        sgaMap.put('P', "¡¡");  // Note: Two exclamation marks
+        sgaMap.put('Q', "ᑑ");
+        sgaMap.put('R', "∷");   // Fixed: was ᓭ (wrong)
+        sgaMap.put('S', "ᓭ");   // Fixed: was ᓖ (invalid)
+        sgaMap.put('T', "ℸ");   // Note: This is "ℸ" (U+2118) with combining character in some fonts, or just "ℸ"
         sgaMap.put('U', "⚍");
         sgaMap.put('V', "⍊");
-        sgaMap.put('W', "⌰");
-        sgaMap.put('X', "ᔕ");
-        sgaMap.put('Y', "⋮");
-        sgaMap.put('Z', "ꖌ");
+        sgaMap.put('W', "∴");   // Fixed: was ⌰ (wrong)
+        sgaMap.put('X', "̇/");   // Note: Combining dot above + slash (two characters)
+        sgaMap.put('Y', "||");  // Fixed: was ⋮ (wrong, that's J)
+        sgaMap.put('Z', "⨅");
     }
 
     @EventHandler
