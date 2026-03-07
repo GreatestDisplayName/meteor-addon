@@ -112,25 +112,6 @@ This project is available under the CC0 license. Feel free to use it for your ow
 
 ---
 
-## Frequently Asked Questions
-
-**Q: Do I need Meteor Client installed?**  
-A: Yes, this is an addon for Meteor Client, not a standalone mod.
-
-**Q: What Minecraft versions are supported?**  
-A: Check the [releases page](https://github.com/GreatestDisplayName/meteor-addon/releases) for version compatibility.
-
-**Q: The addon isn't working. What should I do?**  
-A: Make sure you have both Fabric Loader and Meteor Client installed, and that all mods are compatible with your Minecraft version.
-
-**Q: Can I use this on multiplayer servers?**  
-A: This addon is intended for anarchy servers and private servers where modifications are allowed. Always check server rules first.
-
-**Q: How do I report a bug?**  
-A: Open an issue on our [GitHub issues page](https://github.com/GreatestDisplayName/meteor-addon/issues) with details about the problem.
-
----
-
 ## Disclaimer
 
 This addon is designed for use on anarchy servers and private servers where such modifications are permitted. Always respect server rules and regulations. The developers are not responsible for any bans or consequences resulting from the use of this addon.
