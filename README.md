@@ -118,12 +118,7 @@ This addon is designed for use on anarchy servers and private servers where such
 
 ---
 
-## Links
 
-- 🏠 **Repository**: https://github.com/GreatestDisplayName/meteor-addon
-- 🐛 **Report Issues**: https://github.com/GreatestDisplayName/meteor-addon/issues
-- 💬 **Get Support**: Join the [Meteor Client Discord](https://meteorclient.com/discord)
-- 📦 **Download**: [Latest Release](https://github.com/GreatestDisplayName/meteor-addon/releases/latest)
 
 ---
 
