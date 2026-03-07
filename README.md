@@ -1,4 +1,4 @@
-# Meteor Addon
+# Meteor Addon by GreatestDisplayName and little bit vibe coding
 
 A comprehensive addon for [Meteor Client](https://meteorclient.com/) featuring automation tools, chat utilities, building assistants, and custom HUD elements for Minecraft.
 
