@@ -1,183 +1,158 @@
 # Meteor Addon
 
-A comprehensive addon for Meteor Client with custom modules and utilities.
+A comprehensive addon for [Meteor Client](https://meteorclient.com/) featuring automation tools, chat utilities, building assistants, and custom HUD elements for Minecraft.
 
-### Repository
+[![GitHub](https://img.shields.io/badge/GitHub-GreatestDisplayName%2Fmeteor--addon-blue?logo=github)](https://github.com/GreatestDisplayName/meteor-addon)
 
-- Repository: https://github.com/GreatestDisplayName/meteor-addon
-- Author: GreatestDisplayName
+## Features
 
-#### Development
+This addon adds over 30 custom modules, commands, and HUD elements to enhance your Minecraft experience with Meteor Client.
 
-- Use this template to add custom modules, commands, HUDs, and other features to Meteor Client.
-- To test, run the `Minecraft Client` configuration in your IDE.
-  This will start a Minecraft client with the Meteor Client mod and your addon loaded.
-- To build, run the gradle `build` task. This will create a JAR file in the `build/libs` folder.
-    - Move the JAR file to the `mods` folder of your Minecraft installation, alongside the Meteor Client mod and run the
-      game.
+### 🤖 Automation Modules
 
-### Updating to newer Minecraft versions
+- **AutoPyramid** - Automatically constructs pyramid structures
+- **AutoStaircase** - Builds staircases automatically as you move
+- **AutoWitherBuilder** - Automated wither skeleton construction
+- **IronGolemBuilder** - Automatically builds iron golems
+- **SnowGolemBuilder** - Automated snow golem creation
+- **FluidPlacer** - Intelligent fluid placement automation
+- **LavaCast** - Advanced lava casting for griefing/building
+- **WorldOriginMarker** - Marks world origin coordinates
 
-To update this template to a newer Minecraft version, follow these steps:
+### 💬 Chat Utilities
 
-1. Ensure a Meteor Client snapshot is available for the new Minecraft version.
-2. Update `gradle/libs.versions.toml` (the versions catalog):
-    - Set the version entries to the new versions. Common keys to update are:
-        - `versions.minecraft` - Minecraft version
-        - `versions.yarn-mappings` - Yarn mappings
-        - `versions.fabric-loader` - Fabric loader version
-        - `versions.meteor` - Meteor Client snapshot version
-    - If your addon depends on other libraries listed under the `[libraries]` section, update their versions there as
-      needed.
-    - After editing, refresh Gradle dependencies and rebuild your project in the IDE.
-3. Update Loom:
-    - Change the `loom` version in `gradle/libs.versions.toml` (the `versions.loom` entry) to the latest version
-      compatible with the new Minecraft version.
-4. Update the Gradle wrapper:
-    - Run the wrapper update command for your platform. Examples:
-      - Unix / macOS / Windows (Powershell): `./gradlew wrapper --gradle-version <version> && ./gradlew wrapper`
-      - Windows (cmd.exe): `gradlew.bat wrapper --gradle-version <version> && gradlew.bat wrapper`
-    - This updates and regenerates the Gradle Wrapper scripts (`gradlew`, `gradlew.bat`, etc.) for the specified version.
-5. Update your source code:
-    - Adjust for Minecraft or Yarn mapping changes: method names, imports, mixins, etc.
-    - Check for Meteor Client API changes that may affect your addon by comparing against the
-      [master branch](https://github.com/MeteorDevelopment/meteor-client/tree/master).
-6. Build and test:
-    - Run the gradle `build` task.
-    - Confirm the build succeeds and your addon works with the new Minecraft version.
+- **ChatLogger** - Logs all chat messages to file
+- **ChatMacro** - Create and trigger custom chat macros
+- **ChatTextSelector** - Advanced chat text selection and copying
+- **AutoReply** - Automated chat responses
+- **MessageHighlighter** - Highlight specific messages in chat
+- **LeetSpeak** - Convert messages to l33t speak
+- **SpamPlus** - Enhanced spam capabilities
+- **Ragebait** - Automated ragebait responses
+- **Insulit** - Insult generation and responses
 
-### Project structure
+### 🛡️ Combat & PvP
 
-```text
-.
-│── .github
-│   ╰── workflows
-│       │── dev_build.yml
-│       ╰── pull_request.yml
-│── gradle
-│   │── libs.versions.toml
-│   ╰── wrapper
-│       │── gradle-wrapper.jar
-│       ╰── gradle-wrapper.properties
-│── src
-│   ╰── main
-│       │── java
-│       │   ╰── com
-│       │       ├── meteoraddon
-│       │       │   ╰── addon
-│       │       │       │── commands
-│       │       │       │   ├── AddonCommands
-│       │       │       │   ├── AutoStaircaseCommand
-│       │       │       │   ├── ChatCommands
-│       │       │       │   ├── ChatCopyCommand
-│       │       │       │   ├── ChatListCommand
-│       │       │       │   ├── ChatSpamCommand
-│       │       │       │   ├── DebugCommand
-│       │       │       │   ╰── WitherCommand
-│       │       │       │── hud
-│       │       │       │   ├── ChatTextHud
-│       │       │       │   ├── LavaCastHud
-│       │       │       │   ├── LavaHud
-│       │       │       │   ╰── ModuleStatusHud
-│       │       │       │── interfaces
-│       │       │       │   ╰── MapPrinter
-│       │       │       │── mixin
-│       │       │       │   ╰── StartupMixin
-│       │       │       │── modules
-│       │       │       │   ├── AntiBookBan
-│       │       │       │   ├── AutoPyramid
-│       │       │       │   ├── AutoReply
-│       │       │       │   ├── AutoStaircase
-│       │       │       │   ├── AutoWitherBuilder
-│       │       │       │   ├── ChatLogger
-│       │       │       │   ├── ChatMacro
-│       │       │       │   ├── ChatTextSelector
-│       │       │       │   ├── FluidPlacer
-│       │       │       │   ├── Insulit
-│       │       │       │   ├── IronGolemBuilder
-│       │       │       │   ├── LavaBucketPvP
-│       │       │       │   ├── LavaCast
-│       │       │       │   ├── LeetSpeak
-│       │       │       │   ├── MessageHighlighter
-│       │       │       │   ├── ModuleDisabler
-│       │       │       │   ├── Ragebait
-│       │       │       │   ├── SnowGolemBuilder
-│       │       │       │   ├── SpamPlus
-│       │       │       │   ├── TNTPvP
-│       │       │       │   ╰── WorldOriginMarker
-│       │       │       ├── utils
-│       │       │       │   ├── BlockUtils
-│       │       │       │   ├── ConfigDeserializer
-│       │       │       │   ├── ConfigSerializer
-│       │       │       │   ├── MapAreaCache
-│       │       │       │   ├── MathUtils
-│       │       │       │   ├── SlaveSystem
-│       │       │       │   ├── SlaveTableController
-│       │       │       │   ├── TextDebug
-│       │       │       │   ├── ToolUtils
-│       │       │       │   ├── Utils
-│       │       │       │   ╰── WorldUtils
-│       │       │       ╰── AddonTemplate
-│       │       ╰── kaboomfilter
-│       │           ├── commands
-│       │           │   ╰── KaboomCommands
-│       │           ╰── modules
-│       │               ├── ChatSpamFilter
-│       │               ╰── KaboomChatFiller
-│       ╰── resources
-│           │── assets
-│           │   ╰── template
-│           │       ╰── icon.png
-│           │── meteor-addon.mixins.json
-│           ╰── fabric.mod.json
-│── .editorconfig
-│── .gitignore
-│── build.gradle.kts
-│── gradle.properties
-│── gradlew
-│── gradlew.bat
-│── LICENSE
-│── README.md
-╰── settings.gradle.kts
-```
+- **LavaBucketPvP** - Optimized lava bucket combat
+- **TNTPvP** - TNT-based PvP enhancements
+- **AntiBookBan** - Protection against book-based exploits
 
-This is the default project structure. Each folder/file has a specific purpose.  
-Here is a brief explanation of the ones you might need to modify:
+### 📊 HUD Elements
 
-- `.github/workflows`: Contains the GitHub Actions configuration files.
-- `gradle`: Contains the Gradle wrapper files and the versions catalog.  
-  - `libs.versions.toml`: Defines version numbers for Minecraft, Loom, Meteor, and other dependencies.
-  - `wrapper`: Contains the Gradle wrapper executable files.  
-    To update the Gradle wrapper executable itself, run the wrapper update command (examples are shown above).
-- `src/main/java/com/meteoraddon/addon`: Contains the main addon implementation.  
-  Here you can find all custom commands, modules, and HUDs.  
-  - `AddonTemplate`: Main addon entry point
-  - `commands`: Command implementations
-  - `modules`: Feature modules
-  - `hud`: Heads-up display implementations
-  - `utils`: Utility classes
-  - `mixin`: Minecraft mixin modifications
-- `src/main/java/com/kaboomfilter`: Separate module for Kaboom-specific features.
-- `src/main/resources`: Contains the resources of the addon.
-    - `assets`: Contains the assets of the addon.  
-      You can add your own assets here, separated in subfolders.
-        - `template`: Contains the assets of the template.  
-          You can replace the `icon.png` file with your own addon icon.
-    - `meteor-addon.mixins.json`: Contains the Mixin configuration for the addon.  
-      You can add your own mixins in the `client` array.
-    - `fabric.mod.json`: Contains the metadata of the addon.  
-      Configured for meteor-addon module with proper entry points.
-- `build.gradle.kts`: Contains the Gradle build script.  
-  You can manage the dependencies of the addon here.  
-  Remember to keep the `fabric-loom` version up-to-date.
-- `gradle.properties`: Contains additional build properties used by the build script
-  (for example `maven_group` and `archives_base_name`).  
-  Dependency and platform version numbers are stored in `gradle/libs.versions.toml`.
-- `LICENSE`: Contains the license of the addon.  
-  You can edit this file to change the license of your addon.
-- `README.md`: Contains the documentation of the addon.  
-  You can edit this file to reflect the documentation of your addon, and showcase its features.
+- **ChatTextHud** - Display chat text on HUD
+- **LavaCastHud** - LavaCast progress and statistics
+- **LavaHud** - Lava-related information display
+- **ModuleStatusHud** - Real-time module status display
+
+### 🎯 Commands
+
+- **AutoStaircaseCommand** - Control staircase automation
+- **WitherCommand** - Wither-related commands
+- **ChatCopyCommand** - Copy chat messages
+- **ChatListCommand** - List and manage chat logs
+- **ChatSpamCommand** - Spam control commands
+- **DebugCommand** - Debugging utilities
+
+### 🧩 Additional Features
+
+- **ModuleDisabler** - Automatically disable modules based on conditions
+- **ChatSpamFilter** (Kaboom module) - Filter spam in chat
+- **KaboomChatFiller** - Kaboom-specific chat filling
+
+---
+
+## Installation
+
+### Quick Start
+
+1. **Download** the latest release from the [Releases page](https://github.com/GreatestDisplayName/meteor-addon/releases)
+2. **Locate** your `.minecraft/mods` folder
+3. **Place** the downloaded JAR file into the mods folder
+4. **Launch** Minecraft with Fabric loader and Meteor Client installed
+
+> ⚠️ **Requirements**: You must have [Meteor Client](https://meteorclient.com/) and Fabric Loader installed first!
+
+---
+
+---
+
+## For Developers
+
+Want to build from source or contribute? Check out the [development guide](https://github.com/GreatestDisplayName/meteor-addon/wiki) for detailed instructions on building, testing, and updating the addon.
+
+---
+
+## How to Use
+
+1. **Opening Meteor Menu**: Press `Right Shift` (default keybind) to open the Meteor Client menu
+2. **Finding Addon Modules**: Look for the addon categories in the modules list
+3. **Enabling Features**: Click on any module to toggle it on/off
+4. **Configuring Settings**: Click the gear icon next to any module to customize its settings
+5. **Using Commands**: Type `.help` in chat to see all available commands
+
+### Quick Tips
+- Most automation modules work best when you have the required materials in your hotbar
+- Chat utilities can be customized with custom messages and triggers
+- HUD elements can be repositioned by dragging them in the HUD editor
+
+---
+
+## Contributing
+
+Found a bug or have an idea for a new feature? We'd love your help!
+
+- **Report bugs**: Open an [issue](https://github.com/GreatestDisplayName/meteor-addon/issues)
+- **Suggest features**: Share your ideas in the issues section
+- **Submit code**: Fork the repo, make your changes, and open a pull request
+
+---
+
+## Credits
+
+- **Author**: [GreatestDisplayName](https://github.com/GreatestDisplayName)
+- **Meteor Client**: [MeteorDevelopment](https://github.com/MeteorDevelopment/meteor-client)
+- **Template**: Based on the [Meteor Addon Template](https://github.com/MeteorDevelopment/meteor-addon-template)
+
+---
 
 ## License
 
-This template is available under the CC0 license. Feel free to use it for your own projects.
+This project is available under the CC0 license. Feel free to use it for your own projects.
+
+---
+
+## Frequently Asked Questions
+
+**Q: Do I need Meteor Client installed?**  
+A: Yes, this is an addon for Meteor Client, not a standalone mod.
+
+**Q: What Minecraft versions are supported?**  
+A: Check the [releases page](https://github.com/GreatestDisplayName/meteor-addon/releases) for version compatibility.
+
+**Q: The addon isn't working. What should I do?**  
+A: Make sure you have both Fabric Loader and Meteor Client installed, and that all mods are compatible with your Minecraft version.
+
+**Q: Can I use this on multiplayer servers?**  
+A: This addon is intended for anarchy servers and private servers where modifications are allowed. Always check server rules first.
+
+**Q: How do I report a bug?**  
+A: Open an issue on our [GitHub issues page](https://github.com/GreatestDisplayName/meteor-addon/issues) with details about the problem.
+
+---
+
+## Disclaimer
+
+This addon is designed for use on anarchy servers and private servers where such modifications are permitted. Always respect server rules and regulations. The developers are not responsible for any bans or consequences resulting from the use of this addon.
+
+---
+
+## Links
+
+- 🏠 **Repository**: https://github.com/GreatestDisplayName/meteor-addon
+- 🐛 **Report Issues**: https://github.com/GreatestDisplayName/meteor-addon/issues
+- 💬 **Get Support**: Join the [Meteor Client Discord](https://meteorclient.com/discord)
+- 📦 **Download**: [Latest Release](https://github.com/GreatestDisplayName/meteor-addon/releases/latest)
+
+---
+
+*Made with ❤️ for the Minecraft anarchy community*
