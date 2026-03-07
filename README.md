@@ -61,13 +61,6 @@ This addon adds over 30 custom modules, commands, and HUD elements to enhance yo
 
 ## Installation
 
-### Quick Start
-
-1. **Download** the latest release from the [Releases page](https://github.com/GreatestDisplayName/meteor-addon/releases)
-2. **Locate** your `.minecraft/mods` folder
-3. **Place** the downloaded JAR file into the mods folder
-4. **Launch** Minecraft with Fabric loader and Meteor Client installed
-
 > ⚠️ **Requirements**: You must have [Meteor Client](https://meteorclient.com/) and Fabric Loader installed first!
 
 ---
