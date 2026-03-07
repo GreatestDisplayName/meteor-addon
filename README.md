@@ -15,8 +15,6 @@ This addon adds over 30 custom modules, commands, and HUD elements to enhance yo
 - **AutoWitherBuilder** - Automated wither skeleton construction
 - **IronGolemBuilder** - Automatically builds iron golems
 - **SnowGolemBuilder** - Automated snow golem creation
-- **FluidPlacer** - Intelligent fluid placement automation
-- **LavaCast** - Advanced lava casting for griefing/building
 - **WorldOriginMarker** - Marks world origin coordinates
 
 ### 💬 Chat Utilities
