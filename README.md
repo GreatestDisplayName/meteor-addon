@@ -65,14 +65,6 @@ This addon adds over 30 custom modules, commands, and HUD elements to enhance yo
 
 ---
 
----
-
-## For Developers
-
-Want to build from source or contribute? Check out the [development guide](https://github.com/GreatestDisplayName/meteor-addon/wiki) for detailed instructions on building, testing, and updating the addon.
-
----
-
 ## How to Use
 
 1. **Opening Meteor Menu**: Press `Right Shift` (default keybind) to open the Meteor Client menu
